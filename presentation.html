@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Viewer</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #f2f2f2; /* Set your desired background color */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #pdf-container {
+            display: none; /* Hide PDF container for iPhone users */
+        }
+
+        #download-button {
+            display: block; /* Show the Download PDF button for iPhone users */
+            padding: 10px;
+            background-color: #4CAF50; /* Set your desired button background color */
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+    <script>
+        // Function to check if the user is using an iPhone
+        function isiPhone() {
+            return /iPhone|iPod/.test(navigator.userAgent);
+        }
+
+        // Function to load the PDF or show the download button
+        function loadContent() {
+            if (isiPhone()) {
+                // If iPhone is detected, show the download button
+                document.getElementById('download-button').style.display = 'block';
+            } else {
+                // Otherwise, show the PDF container
+                document.getElementById('pdf-container').style.display = 'block';
+            }
+        }
+
+        // Load the content on page load
+        window.onload = loadContent;
+    </script>
+</head>
+<body>
+
+    <div id="pdf-container">
+        <!-- Embed or iframe code for non-iPhone users -->
+        <object data="./Essay.pdf" type="application/pdf" width="100%" height="800px">
+            <p>It appears you don't have a PDF plugin for this browser. You can <a href="./Essay.pdf">click here to download the PDF file.</a></p>
+        </object>
+    </div>
+
+    <a id="download-button" href="./Essay.pdf" download="Essay.pdf">View Essay</a>
+
+</body>
+</html>
